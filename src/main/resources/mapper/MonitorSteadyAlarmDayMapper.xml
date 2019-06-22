@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wsxiot.dao.MonitorSteadyAlarmDayMapper">
+  <resultMap id="BaseResultMap" type="cn.wsxiot.bean.MonitorSteadyAlarmDay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="monitor_id" jdbcType="VARCHAR" property="monitorId" />
+    <result column="statistics_date" jdbcType="VARCHAR" property="statisticsDate" />
+    <result column="frequency_deviation_alarm" jdbcType="INTEGER" property="frequencyDeviationAlarm" />
+    <result column="voltage_deviation_alarm" jdbcType="INTEGER" property="voltageDeviationAlarm" />
+    <result column="harmonic_voltage_alarm" jdbcType="INTEGER" property="harmonicVoltageAlarm" />
+    <result column="harmonic_current_alarm" jdbcType="INTEGER" property="harmonicCurrentAlarm" />
+    <result column="inter_harmonic_voltage_alarm" jdbcType="INTEGER" property="interHarmonicVoltageAlarm" />
+    <result column="three_phase_vol_imbalance_alarm" jdbcType="INTEGER" property="threePhaseVolImbalanceAlarm" />
+    <result column="negative_sequence_cur_alarm" jdbcType="INTEGER" property="negativeSequenceCurAlarm" />
+    <result column="long_time_flicker_alarm" jdbcType="INTEGER" property="longTimeFlickerAlarm" />
+    <result column="thdu_alarm" jdbcType="INTEGER" property="thduAlarm" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from s_monitor_steady_alarm_d
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wsxiot.bean.MonitorSteadyAlarmDay">
+    insert into s_monitor_steady_alarm_d (id, monitor_id, statistics_date, 
+      frequency_deviation_alarm, voltage_deviation_alarm, 
+      harmonic_voltage_alarm, harmonic_current_alarm, 
+      inter_harmonic_voltage_alarm, three_phase_vol_imbalance_alarm, 
+      negative_sequence_cur_alarm, long_time_flicker_alarm, 
+      thdu_alarm)
+    values (#{id,jdbcType=INTEGER}, #{monitorId,jdbcType=VARCHAR}, #{statisticsDate,jdbcType=VARCHAR}, 
+      #{frequencyDeviationAlarm,jdbcType=INTEGER}, #{voltageDeviationAlarm,jdbcType=INTEGER}, 
+      #{harmonicVoltageAlarm,jdbcType=INTEGER}, #{harmonicCurrentAlarm,jdbcType=INTEGER}, 
+      #{interHarmonicVoltageAlarm,jdbcType=INTEGER}, #{threePhaseVolImbalanceAlarm,jdbcType=INTEGER}, 
+      #{negativeSequenceCurAlarm,jdbcType=INTEGER}, #{longTimeFlickerAlarm,jdbcType=INTEGER}, 
+      #{thduAlarm,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.wsxiot.bean.MonitorSteadyAlarmDay">
+    update s_monitor_steady_alarm_d
+    set monitor_id = #{monitorId,jdbcType=VARCHAR},
+      statistics_date = #{statisticsDate,jdbcType=VARCHAR},
+      frequency_deviation_alarm = #{frequencyDeviationAlarm,jdbcType=INTEGER},
+      voltage_deviation_alarm = #{voltageDeviationAlarm,jdbcType=INTEGER},
+      harmonic_voltage_alarm = #{harmonicVoltageAlarm,jdbcType=INTEGER},
+      harmonic_current_alarm = #{harmonicCurrentAlarm,jdbcType=INTEGER},
+      inter_harmonic_voltage_alarm = #{interHarmonicVoltageAlarm,jdbcType=INTEGER},
+      three_phase_vol_imbalance_alarm = #{threePhaseVolImbalanceAlarm,jdbcType=INTEGER},
+      negative_sequence_cur_alarm = #{negativeSequenceCurAlarm,jdbcType=INTEGER},
+      long_time_flicker_alarm = #{longTimeFlickerAlarm,jdbcType=INTEGER},
+      thdu_alarm = #{thduAlarm,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, monitor_id, statistics_date, frequency_deviation_alarm, voltage_deviation_alarm, 
+    harmonic_voltage_alarm, harmonic_current_alarm, inter_harmonic_voltage_alarm, three_phase_vol_imbalance_alarm, 
+    negative_sequence_cur_alarm, long_time_flicker_alarm, thdu_alarm
+    from s_monitor_steady_alarm_d
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, monitor_id, statistics_date, frequency_deviation_alarm, voltage_deviation_alarm, 
+    harmonic_voltage_alarm, harmonic_current_alarm, inter_harmonic_voltage_alarm, three_phase_vol_imbalance_alarm, 
+    negative_sequence_cur_alarm, long_time_flicker_alarm, thdu_alarm
+    from s_monitor_steady_alarm_d
+  </select>
+</mapper>
